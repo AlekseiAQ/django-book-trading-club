@@ -33,4 +33,14 @@ class BookListViewTest(TestCase):
         self.assertEqual(list(response.context['books']), [book_one, book_two])
     
     def test_book_detail(self):
-        pass
+        user = User()
+        user.save()
+        book = Book.objects.create(
+            title='First Title',
+            author='First Author',
+            published_year=1900,
+            user=user,
+            slug='first-title-first-author',
+        )
+        response = self.client.get('/books/%s/' % (book.slug,))
+        self.assertEqual(response.context['book'], book)
