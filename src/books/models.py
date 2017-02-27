@@ -1,8 +1,10 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
 class Book(models.Model):
+
     title = models.CharField(max_length=120)
     author = models.CharField(max_length=50)
     description = models.TextField(blank=True)
@@ -14,3 +16,6 @@ class Book(models.Model):
     
     def __str__(self):
         return '"%s" - %s' % (self.title, self.author)
+
+    def get_absolute_url(self):
+        return reverse("books:detail", kwargs={"slug": self.slug})

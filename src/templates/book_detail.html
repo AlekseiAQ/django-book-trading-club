@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Book Details | {{ title }}</title>
-</head>
-<body>
-    <div class='content'>
+{% extends "base.html" %}
+
+{% block head_title %} {{ block.super }} | {{ title }} {% endblock head_title%}
+
+{% block content %}
+    <div>
         {{ title }}
         {{ author }}
         {{ published_year }}
@@ -13,5 +11,4 @@
         {{ added_date }}
         {{ description }}
     </div>
-</body>
-</html>
+{% endblock content %}

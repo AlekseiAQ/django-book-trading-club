@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ block.super }} | Books List {% endblock head_title%}
+
+{% block content %}
+    {% for book in books %}
+        <div>
+            <h1><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h1>
+            <p>{{ description }}</p>
+        </div>
+    {% endfor %} 
+{% endblock content %}
